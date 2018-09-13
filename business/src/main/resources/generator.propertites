@@ -1,0 +1,7 @@
+##需要修改为自己的mysql-connector-java-5.1.39.jar的地址
+
+jdbc.driverLocation=D:\\maven\\apache-maven-3.5.3-bin\\maven-repository\\mysql\\mysql-connector-java\\5.1.46\\mysql-connector-java-5.1.20.jar
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.connectionURL=jdbc:mysql://rm-bp1485293ipwpg5ohlo.mysql.rds.aliyuncs.com:3306/ssp2?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&autoReconnect=true&useSSL=false
+jdbc.userId=ssp2
+jdbc.password=2WGwnHuxraXYWOV
