@@ -11,6 +11,7 @@
         <module>server</module>
         <module>eureka</module>
         <module>business</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
