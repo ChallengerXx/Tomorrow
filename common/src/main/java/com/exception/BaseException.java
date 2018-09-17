@@ -1,10 +1,12 @@
 package com.exception;
 
 import com.EnumBean.CommonEnum;
+import lombok.Data;
 
 /**
  * 公共异常类
  */
+@Data
 public class BaseException extends RuntimeException {
 
     private String msg;
