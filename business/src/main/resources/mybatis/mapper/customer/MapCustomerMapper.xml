@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.business.dao.mapper.custom.MapCustomerMapper">
+    <select id="searchTablesByFlag" parameterType="map" resultType="java.lang.String">
+        SELECT
+            sm.table_name tableName,
+            Num.*
+        FROM
+            ssp_scr_map sm
+        INNER JOIN (
+            SELECT
+                mn.machine_num machineNum,
+                mn.flag flag
+            FROM
+                ssp_machine_num mn
+            WHERE
+                mn.machine_num IN
+                <foreach collection="numList" item="num" open="(" close=")" separator=",">
+                #{num}
+                </foreach>
+        ) Num
+        WHERE
+            Num.flag = sm.flag
+    </select>
+</mapper>
