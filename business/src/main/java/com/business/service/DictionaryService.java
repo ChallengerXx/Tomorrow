@@ -1,4 +1,4 @@
-package com.business.dao.service;
+package com.business.service;
 
 import com.business.dao.entity.projectEntity.DataDictionaryA;
 

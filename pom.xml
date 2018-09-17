@@ -12,6 +12,7 @@
         <module>eureka</module>
         <module>business</module>
         <module>common</module>
+        <module>api</module>
     </modules>
     <packaging>pom</packaging>
 
