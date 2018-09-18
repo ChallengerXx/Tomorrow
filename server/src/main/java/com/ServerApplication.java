@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = "com.business.dao.mapper.projectMapper")
+@MapperScan(basePackages = "com.business.dao.mapper.*")
 public class ServerApplication {
 
     public static void main(String[] args) {

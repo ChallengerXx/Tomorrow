@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.business.dao.mapper.custom.PremisesCustomerMapper">
-
+    <select id="searchPremisesByNum" parameterType="map" resultType="com.vo.PremisesVo">
+        <foreach collection="queryList" item="req" separator="UNION ALl">
+            <if test="req != null">
+                SELECT
+                    vo.*, dic.code_name type
+                FROM
+                    data_dictionary_b dic
+                INNER JOIN (
+                    SELECT
+                        ele.ele_name elevatorName,
+                        bui.build_name buildName,
+                        pre.address address,
+                        un.unit_name unitName,
+                        pre. NAME pname,
+                        pre.type typeCode,
+                        pre.img skupic,
+                        a.Name cityName,
+                        ar.Name areaName,
+                        t.*
+                    FROM
+                        (
+                            SELECT
+                                ele_id elevatorCode,
+                                area_code areaCode,
+                                city_code cityCode,
+                                building_id buildId,
+                                premises_id pid,
+                                unit_id unitId
+                            FROM
+                                ${req.table}
+                            WHERE
+                                machine_num = #{req.machineNum}
+                        ) t
+                    LEFT JOIN ssp_elevator ele ON ele.id = t.elevatorCode
+                    INNER JOIN ssp_building bui ON bui.id = t.buildId
+                    INNER JOIN ssp_premises pre ON pre.primary_id = t.pid
+                    INNER JOIN ssp_unit un ON un.id = t.unitId
+                    INNER JOIN areas a ON a.ID = t.cityCode
+                    INNER JOIN areas ar ON ar.ID = t.areaCode
+                ) vo ON vo.typeCode = dic. CODE
+                WHERE
+                    dic.a_code = #{aCode}
+            </if>
+        </foreach>
+    </select>
 </mapper>
