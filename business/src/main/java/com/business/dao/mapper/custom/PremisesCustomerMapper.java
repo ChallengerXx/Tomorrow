@@ -12,4 +12,6 @@ public interface PremisesCustomerMapper {
     List<PremisesVo> searchPremisesByNum(@Param("queryList")List<TableReq> queryList,@Param("aCode")String aCode);
 
     List<PremisesGPSVo> getPremisesByIds(@Param("pids")List<Integer> pids);
+
+    List<PremisesGPSVo> getPremisesNameLike(@Param("cityCodes")List<String> cityCodes,@Param("searchWord") String searchWord);
 }

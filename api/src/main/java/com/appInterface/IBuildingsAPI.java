@@ -24,4 +24,13 @@ public interface IBuildingsAPI {
      * @return
      */
     List<PremisesGPSVo> getByIds(Map<String, List<Integer>> pids);
+
+    /**
+     * 根据楼宇名称模糊查找
+     * json
+     *
+     * @param body
+     * @return
+     */
+    List<PremisesGPSVo> getByNameLike(String body);
 }

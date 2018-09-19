@@ -13,4 +13,6 @@ public class PremisesGPSVo {
     private String pid;
     //楼盘名
     private String pname;
+    //地址
+    private String address;
 }

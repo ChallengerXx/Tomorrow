@@ -7,6 +7,7 @@ import com.business.dao.mapper.projectMapper.SspMachineNumMapper;
 import com.business.service.PremisesService;
 import com.contant.DictionaryEnum;
 import com.req.TableReq;
+import com.util.AppStringUtil;
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PremissesServiceImpl implements PremisesService {
@@ -45,6 +47,12 @@ public class PremissesServiceImpl implements PremisesService {
     @Override
     public List<PremisesGPSVo> getPremisesByIds(List<Integer> pids) {
         List<PremisesGPSVo> voList = premisesCustomerMapper.getPremisesByIds(pids);
+        return voList;
+    }
+
+    @Override
+    public List<PremisesGPSVo> getPremisesNameLike(String searchWord,List<String> cityCodes) {
+        List<PremisesGPSVo> voList = premisesCustomerMapper.getPremisesNameLike(cityCodes, searchWord);
         return voList;
     }
 }

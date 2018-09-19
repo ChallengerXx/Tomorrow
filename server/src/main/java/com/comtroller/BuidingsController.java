@@ -49,10 +49,27 @@ public class BuidingsController implements IBuildingsAPI {
     @Override
     @PostMapping("/getByIds")
     public List<PremisesGPSVo> getByIds(@RequestBody Map<String, List<Integer>> pids) {
-        if (pids == null){
+        if (pids == null) {
             throw new BusinessException("楼盘id不能为空");
         }
         List<PremisesGPSVo> voList = premisesService.getPremisesByIds(pids.get("pids"));
+        return voList;
+    }
+
+    /**
+     * 根据楼宇名称模糊查找
+     * json
+     *
+     * @param body
+     * @return
+     */
+    @Override
+    @PostMapping("/getByNameLike")
+    public List<PremisesGPSVo> getByNameLike(@RequestBody String body) {
+        JSONObject json = JSONObject.parseObject(body);
+        String searchWord = json.getString("searchWord");
+        List<String> cityCodes = AppStringUtil.strToList(json.getString("city"), ",");
+        List<PremisesGPSVo> voList = premisesService.getPremisesNameLike(searchWord, cityCodes);
         return voList;
     }
 }
