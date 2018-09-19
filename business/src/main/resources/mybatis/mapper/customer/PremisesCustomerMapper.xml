@@ -46,4 +46,19 @@
             </if>
         </foreach>
     </select>
+
+    <select id="getPremisesByIds" parameterType="map" resultType="com.vo.PremisesGPSVo">
+        SELECT
+            name pname,
+            position_lng longitude,
+            position_lat latitude,
+            primary_id pid
+        FROM
+            ssp_premises
+        WHERE
+            primary_id IN
+            <foreach collection="pids" item="pid" separator="," open="(" close=")">
+                #{pid}
+            </foreach>
+    </select>
 </mapper>

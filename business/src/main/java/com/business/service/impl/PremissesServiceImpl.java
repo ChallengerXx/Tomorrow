@@ -2,14 +2,12 @@ package com.business.service.impl;
 
 import com.business.dao.entity.projectEntity.SspMachineNum;
 import com.business.dao.entity.projectEntity.SspMachineNumExample;
-import com.business.dao.entity.projectEntity.SspPremises;
-import com.business.dao.entity.projectEntity.SspPremisesExample;
 import com.business.dao.mapper.custom.PremisesCustomerMapper;
 import com.business.dao.mapper.projectMapper.SspMachineNumMapper;
-import com.business.dao.mapper.projectMapper.SspPremisesMapper;
 import com.business.service.PremisesService;
 import com.contant.DictionaryEnum;
 import com.req.TableReq;
+import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +19,10 @@ import java.util.List;
 public class PremissesServiceImpl implements PremisesService {
 
     @Autowired
-    private SspPremisesMapper premisesMapper;
-
-    @Autowired
     private SspMachineNumMapper machineNumMapper;
 
     @Autowired
     private PremisesCustomerMapper premisesCustomerMapper;
-
-    @Override
-    public List<SspPremises> getAll() {
-        SspPremisesExample example = new SspPremisesExample();
-        example.createCriteria();
-        List<SspPremises> list = premisesMapper.selectByExample(example);
-        return list;
-    }
 
     @Override
     public List<PremisesVo> getByMachineNum(List<String> numList) {
@@ -53,5 +40,11 @@ public class PremissesServiceImpl implements PremisesService {
         });
         List<PremisesVo> premisesVoList = premisesCustomerMapper.searchPremisesByNum(queryList, DictionaryEnum.PREMISES_TYPE.getCode());
         return premisesVoList;
+    }
+
+    @Override
+    public List<PremisesGPSVo> getPremisesByIds(List<Integer> pids) {
+        List<PremisesGPSVo> voList = premisesCustomerMapper.getPremisesByIds(pids);
+        return voList;
     }
 }

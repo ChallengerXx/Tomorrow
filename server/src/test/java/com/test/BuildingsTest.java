@@ -24,4 +24,9 @@ public class BuildingsTest {
         List<PremisesVo> voList = premisesService.getByMachineNum(Arrays.asList("CD-B74-323", "BJB-E11-039"));
         System.out.println(voList);
     }
+
+    @Test
+    public void getPremisesByIds(){
+        premisesService.getPremisesByIds(Arrays.asList(197773));
+    }
 }
