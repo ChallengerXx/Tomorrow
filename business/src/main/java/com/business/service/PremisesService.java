@@ -2,6 +2,7 @@ package com.business.service;
 
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
+import com.vo.SellAppPremisesVo;
 
 import java.util.List;
 import java.util.Map;
@@ -31,5 +32,14 @@ public interface PremisesService {
      * @param cityCodes
      * @return
      */
-    List<PremisesGPSVo> getPremisesNameLike(String searchWord,List<String> cityCodes);
+    List<PremisesGPSVo> getPremisesNameLike(String searchWord, List<String> cityCodes);
+
+    /**
+     * 通过楼盘id查询楼盘信息
+     * 提供给售卖系统接口
+     *
+     * @param pidList
+     * @return
+     */
+    List<SellAppPremisesVo> getAppPremisesByIds(List<String> pidList);
 }

@@ -83,4 +83,29 @@
                 AND name LIKE CONCAT('%',#{searchWord},'%')
             </if>
     </select>
+
+    <select id="getAppPremisesByIds" parameterType="map" resultType="com.vo.SellAppPremisesVo">
+        SELECT
+            address,
+            area_code areaId,
+            city_code cityId,
+            max_storey highfloorNum,
+            position_lat latitude,
+            position_lng longitude,
+            min_storey lessfloorNum,
+            in_house_rate occupancyRate,
+            primary_id pid,
+            name pname,
+            type propertyType,
+            province_code provinceId,
+            img skupic,
+            total_people weekforpeople
+        FROM
+            ssp_premises
+        WHERE
+            primary_id IN
+            <foreach collection="pidList" item="pid" open="(" close=")" separator=",">
+                #{pid}
+            </foreach>
+    </select>
 </mapper>

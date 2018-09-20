@@ -3,6 +3,7 @@ package com.test;
 
 import com.business.service.PremisesService;
 import com.vo.PremisesVo;
+import com.vo.SellAppPremisesVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,11 @@ public class BuildingsTest {
     @Test
     public void getPremisesByIds(){
         premisesService.getPremisesByIds(Arrays.asList(197773));
+    }
+
+    @Test
+    public void getAppPremisesByIds(){
+        List<SellAppPremisesVo> list = premisesService.getAppPremisesByIds(Arrays.asList("197773"));
+        System.out.println(list);
     }
 }

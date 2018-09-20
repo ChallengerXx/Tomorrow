@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.business.dao.mapper.projectMapper.AreasMapper" >
+  <resultMap id="BaseResultMap" type="com.business.dao.entity.projectEntity.Areas" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ParentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ShortName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MergerShortName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LevelType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CityCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ZipCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ParentId, Name, ShortName, MergerShortName, LevelType, CityCode, ZipCode, Remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.business.dao.entity.projectEntity.AreasExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from areas
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from areas
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.business.dao.entity.projectEntity.Areas" >
+    insert into areas (ID, ParentId, Name, 
+      ShortName, MergerShortName, LevelType, 
+      CityCode, ZipCode, Remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{shortname,jdbcType=VARCHAR}, #{mergershortname,jdbcType=VARCHAR}, #{leveltype,jdbcType=VARCHAR}, 
+      #{citycode,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.business.dao.entity.projectEntity.Areas" >
+    insert into areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="shortname != null" >
+        ShortName,
+      </if>
+      <if test="mergershortname != null" >
+        MergerShortName,
+      </if>
+      <if test="leveltype != null" >
+        LevelType,
+      </if>
+      <if test="citycode != null" >
+        CityCode,
+      </if>
+      <if test="zipcode != null" >
+        ZipCode,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="mergershortname != null" >
+        #{mergershortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        #{leveltype,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update areas
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentid != null" >
+        ParentId = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortname != null" >
+        ShortName = #{record.shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mergershortname != null" >
+        MergerShortName = #{record.mergershortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leveltype != null" >
+        LevelType = #{record.leveltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.citycode != null" >
+        CityCode = #{record.citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null" >
+        ZipCode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update areas
+    set ID = #{record.id,jdbcType=INTEGER},
+      ParentId = #{record.parentid,jdbcType=INTEGER},
+      Name = #{record.name,jdbcType=VARCHAR},
+      ShortName = #{record.shortname,jdbcType=VARCHAR},
+      MergerShortName = #{record.mergershortname,jdbcType=VARCHAR},
+      LevelType = #{record.leveltype,jdbcType=VARCHAR},
+      CityCode = #{record.citycode,jdbcType=VARCHAR},
+      ZipCode = #{record.zipcode,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.business.dao.entity.projectEntity.Areas" >
+    update areas
+    <set >
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        ShortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="mergershortname != null" >
+        MergerShortName = #{mergershortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        LevelType = #{leveltype,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        CityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.business.dao.entity.projectEntity.Areas" >
+    update areas
+    set ParentId = #{parentid,jdbcType=INTEGER},
+      Name = #{name,jdbcType=VARCHAR},
+      ShortName = #{shortname,jdbcType=VARCHAR},
+      MergerShortName = #{mergershortname,jdbcType=VARCHAR},
+      LevelType = #{leveltype,jdbcType=VARCHAR},
+      CityCode = #{citycode,jdbcType=VARCHAR},
+      ZipCode = #{zipcode,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

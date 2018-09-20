@@ -7,6 +7,7 @@ import com.exception.BusinessException;
 import com.util.AppStringUtil;
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
+import com.vo.SellAppPremisesVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -70,6 +71,23 @@ public class BuidingsController implements IBuildingsAPI {
         String searchWord = json.getString("searchWord");
         List<String> cityCodes = AppStringUtil.strToList(json.getString("city"), ",");
         List<PremisesGPSVo> voList = premisesService.getPremisesNameLike(searchWord, cityCodes);
+        return voList;
+    }
+
+    /**
+     * 提供给售卖系统接口,根据楼盘ID查询楼盘信息
+     * （form-data）
+     *
+     * @param pids
+     * @return
+     */
+    @Override
+    @PostMapping("/getListByIdsV2")
+    public List<SellAppPremisesVo> getListByIdsV2(String pids) {
+        if (pids != null && StringUtils.isEmpty(pids.trim()))
+            throw new BusinessException("楼兰id不能为空");
+        List<String> pidList = AppStringUtil.strToList(pids, ",");
+        List<SellAppPremisesVo> voList = premisesService.getAppPremisesByIds(pidList);
         return voList;
     }
 }

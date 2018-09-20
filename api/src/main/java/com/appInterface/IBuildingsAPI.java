@@ -2,6 +2,7 @@ package com.appInterface;
 
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
+import com.vo.SellAppPremisesVo;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,8 @@ import java.util.Map;
 public interface IBuildingsAPI {
 
     /**
-     * 根据机器码查询楼盘信息（form-data）
+     * 根据机器码查询楼盘信息
+     * （form-data）
      *
      * @param nums
      * @return
@@ -33,4 +35,13 @@ public interface IBuildingsAPI {
      * @return
      */
     List<PremisesGPSVo> getByNameLike(String body);
+
+    /**
+     * 提供给售卖系统接口,根据楼盘ID查询楼盘信息
+     * （form-data）
+     *
+     * @param pids
+     * @return
+     */
+    List<SellAppPremisesVo> getListByIdsV2(String pids);
 }

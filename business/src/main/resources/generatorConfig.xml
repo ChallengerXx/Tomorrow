@@ -56,6 +56,6 @@
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="ssp_machine_num" enableCountByExample="false" enableDeleteByExample="false"  />
+        <table tableName="areas" enableCountByExample="false" enableDeleteByExample="false"  />
     </context>
 </generatorConfiguration>
