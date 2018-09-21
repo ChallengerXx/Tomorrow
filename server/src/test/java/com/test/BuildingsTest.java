@@ -1,6 +1,7 @@
 package com.test;
 
 
+import com.business.service.DeviceService;
 import com.business.service.PremisesService;
 import com.vo.PremisesVo;
 import com.vo.SellAppPremisesVo;
@@ -19,20 +20,27 @@ public class BuildingsTest {
 
     @Autowired
     private PremisesService premisesService;
+    @Autowired
+    private DeviceService deviceService;
 
     @Test
-    public void getByMachineNum(){
+    public void deviceExport(){
+        String file = "D:/nmyslog";
+        deviceService.deviceExport(123456L,1,file);
+    }
+    @Test
+    public void getByMachineNum() {
         List<PremisesVo> voList = premisesService.getByMachineNum(Arrays.asList("CD-B74-323", "BJB-E11-039"));
         System.out.println(voList);
     }
 
     @Test
-    public void getPremisesByIds(){
+    public void getPremisesByIds() {
         premisesService.getPremisesByIds(Arrays.asList(197773));
     }
 
     @Test
-    public void getAppPremisesByIds(){
+    public void getAppPremisesByIds() {
         List<SellAppPremisesVo> list = premisesService.getAppPremisesByIds(Arrays.asList("197773"));
         System.out.println(list);
     }

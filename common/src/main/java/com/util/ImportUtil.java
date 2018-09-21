@@ -27,7 +27,8 @@ import java.util.stream.Stream;
 @Slf4j
 public class ImportUtil {
 
-    private ImportUtil(){}
+    private ImportUtil() {
+    }
 
     /**
      * excel文件导入
@@ -82,11 +83,11 @@ public class ImportUtil {
                 }
             }
         } catch (Exception e) {
-            if (workbook != null){
+            if (workbook != null) {
                 try {
                     workbook.close();
                 } catch (IOException e1) {
-                    log.error("文件导入error",e1);
+                    log.error("文件导入error", e1);
                 }
             }
         }
@@ -117,18 +118,18 @@ public class ImportUtil {
         } catch (IOException e) {
             log.error("csv文件导入error", e);
         } finally {
-            if (reader != null){
+            if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    log.error("关闭文件流error",e);
+                    log.error("关闭文件流error", e);
                 }
             }
-            if (isr != null){
+            if (isr != null) {
                 try {
                     isr.close();
                 } catch (IOException e) {
-                    log.error("关闭文件流error",e);
+                    log.error("关闭文件流error", e);
                 }
             }
         }
@@ -214,17 +215,17 @@ public class ImportUtil {
         } catch (Exception e) {
             log.error("导出异常！", e);
         } finally {
-            if (fos != null){
+            if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e) {
-                    log.error("error",e);
+                    log.error("error", e);
                 } finally {
-                    if (wb != null){
+                    if (wb != null) {
                         try {
                             wb.close();
                         } catch (IOException e) {
-                            log.error("error",e);
+                            log.error("error", e);
                         }
                     }
                 }
@@ -234,28 +235,69 @@ public class ImportUtil {
 
     /**
      * 导出文件到csv文件中
+     *
      * @param dataList 数据集合
      * @param filePath 文件地址
      */
-    public static void exportCsvFile(List<String[]> dataList, String filePath){
-        BufferedWriter writer = null;
+//    public static void exportCsvFile(List<String[]> dataList, String filePath){
+//        BufferedWriter writer = null;
+//        OutputStreamWriter osw = null;
+//        FileOutputStream fis = null;
+//        try {
+//            fis = new FileOutputStream(filePath);
+//            osw = new OutputStreamWriter(fis, Charset.forName("utf-8"));
+//            writer = new BufferedWriter(osw);
+//            for(String[] data : dataList){
+//                writer.write(Stream.of(data).collect(Collectors.joining(",")) + "\r");
+//            }
+//            writer.flush();
+//            log.info("导出成功！");
+//        } catch (Exception e) {
+//            log.error("error",e);
+//        } finally {
+//            if (writer != null){
+//                try {
+//                    writer.close();
+//                } catch (IOException e) {
+//                    log.error("error",e);
+//                }
+//            }
+//            if (osw != null){
+//                try {
+//                    osw.close();
+//                } catch (IOException e) {
+//                    log.error("error",e);
+//                }
+//            }
+//            if (fis != null){
+//                try {
+//                    fis.close();
+//                } catch (IOException e) {
+//                    log.error("error",e);
+//                }
+//            }
+//        }
+//    }
+
+    public static void exportCsvFile(List<String> list, String filePath) {
+        FileOutputStream fos = null;
         OutputStreamWriter osw = null;
-        FileOutputStream fis = null;
+        BufferedWriter bw = null;
         try {
-            fis = new FileOutputStream(filePath);
-            osw = new OutputStreamWriter(fis, Charset.forName("utf-8"));
-            writer = new BufferedWriter(osw);
-            for(String[] data : dataList){
-                writer.write(Stream.of(data).collect(Collectors.joining(",")) + "\r");
+            fos = new FileOutputStream(filePath);
+            osw = new OutputStreamWriter(fos);
+            bw = new BufferedWriter(osw);
+            for (String s : list) {
+                bw.write(s+"\r");
             }
-            writer.flush();
-            log.info("导出成功！");
+            bw.flush();
+            log.info("导出成功");
         } catch (Exception e) {
-            log.error("error",e);
+            log.error("导出失败:", e);
         } finally {
-            if (writer != null){
+            if (bw != null) {
                 try {
-                    writer.close();
+                    bw.close();
                 } catch (IOException e) {
                     log.error("error",e);
                 }
@@ -267,9 +309,9 @@ public class ImportUtil {
                     log.error("error",e);
                 }
             }
-            if (fis != null){
+            if (fos != null){
                 try {
-                    fis.close();
+                    fos.close();
                 } catch (IOException e) {
                     log.error("error",e);
                 }
