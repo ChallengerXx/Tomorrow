@@ -39,7 +39,6 @@ spring:
       server:
         git:
           uri: https://github.com/ChallengerXx/config
-          search-paths: config-repo
       label: master
       name: service-application
       profile: dev

@@ -1,0 +1,27 @@
+.project
+.metadata
+.classpath
+.settings/
+.loadpath
+
+## Maven
+target/
+**/target/
+
+## Idea
+.idea/
+*.iml
+#*.yml
+
+## Mac crap
+.DS_Store
+
+/logs/
+**/logs/
+
+##cache
+cache/
+**/log/*
+
+*.log
+*.out
