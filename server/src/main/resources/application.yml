@@ -1,0 +1,53 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://120.79.233.48:8880/eureka/
+    registry-fetch-interval-seconds: 30
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 30
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://120.79.233.48:3306/ssp2?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&autoReconnect=true&useSSL=false
+    username: root
+    password: xx@123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall
+    maxActive: 20
+    initialSize: 5
+    maxWait: 60000
+    minIdle: 5
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxOpenPreparedStatements: 20
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ChallengerXx/config
+      label: master
+      name: service-application
+      profile: dev
+  application:
+    name: SERVER
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*/*.xml
+  type-aliases-package: com.business.dao.entity.*
+logging:
+  config: classpath:logback-spring.xml
+server:
+  port: 10002

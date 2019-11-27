@@ -2,8 +2,11 @@ package com.exception;
 
 import com.EnumBean.CommonEnum;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class BusinessException extends BaseException {
 
     public BusinessException(String msg, String code) {

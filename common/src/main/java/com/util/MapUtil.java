@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MapUtil {
 
-    public static double EARTH_RADIUS = 6371.393;
+    public static final double EARTH_RADIUS = 6371.393;
 
     private static double rad(double d) {
         return d * Math.PI / 180.0;

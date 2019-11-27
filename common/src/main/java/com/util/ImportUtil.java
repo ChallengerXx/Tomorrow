@@ -285,7 +285,7 @@ public class ImportUtil {
         BufferedWriter bw = null;
         try {
             fos = new FileOutputStream(filePath);
-            osw = new OutputStreamWriter(fos);
+            osw = new OutputStreamWriter(fos,"UTF-8");
             bw = new BufferedWriter(osw);
             for (String s : list) {
                 bw.write(s+"\r");
