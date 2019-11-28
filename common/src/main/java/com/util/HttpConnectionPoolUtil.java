@@ -203,7 +203,7 @@ public class HttpConnectionPoolUtil {
         if (monitorExecutor == null){
             synchronized (SYNC_MONITOR_LOCK){
                 if (monitorExecutor == null){
-                    Executors.newScheduledThreadPool(1);
+                    monitorExecutor = Executors.newScheduledThreadPool(1);
                     monitorExecutor.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
