@@ -10,9 +10,11 @@ import com.vo.PremisesVo;
 import com.vo.SellAppPremisesVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,15 @@ public class BuidingsController implements IBuildingsAPI {
     @Autowired
     private PremisesService premisesService;
 
+    @Value("${testValue:200}")
+    private String testValue;
+
+    @RequestMapping(value = "/testValue", method = RequestMethod.GET)
+    public String getTestValue(){
+        return testValue;
+    }
+
+
     /**
      * 根据机器码查询楼盘信息（form-data）
      *
@@ -32,12 +43,13 @@ public class BuidingsController implements IBuildingsAPI {
     @Override
     @RequestMapping(value = "/getByMachineNum", method = RequestMethod.POST)
     public List<PremisesVo> getByMachineNum(String nums) {
-        if (nums == null || StringUtils.isEmpty(nums.trim())) {
-            throw new BusinessException("机器码不能为空");
-        }
-        List<String> numList = AppStringUtil.strToList(nums, ",");
-        List<PremisesVo> voList = premisesService.getByMachineNum(numList);
-        return voList;
+        return new ArrayList<>();
+//        if (nums == null || StringUtils.isEmpty(nums.trim())) {
+//            throw new BusinessException("机器码不能为空");
+//        }
+//        List<String> numList = AppStringUtil.strToList(nums, ",");
+//        List<PremisesVo> voList = premisesService.getByMachineNum(numList);
+//        return voList;
     }
 
     /**
