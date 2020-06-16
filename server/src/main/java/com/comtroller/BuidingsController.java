@@ -28,6 +28,24 @@ public class BuidingsController implements IBuildingsAPI {
     @Value("${testValue:200}")
     private String testValue;
 
+    /**
+     * @api {POST} /test/:id 测试二
+     * @apiGroup test
+     * @apiVersion 0.0.1
+     * @apiDescription 这是第二个测试
+     * @apiParam  {String} name 名字
+     * @apiParam  {String} [phone] 手机
+     * @apiSuccess (Success) {String} msg 信息
+     * @apiSuccess (Success) {int} code 0 代表无错误 1代表有错误
+     * @apiError (Error) {String} msg 信息
+     * @apiError (Error) {String} m 信息
+     * @apiParamExample 请求样例
+     * /index.php?i=8888
+     * @apiSuccessExample {json} 返回样例
+     *                {"code":"0","msg":"修改成功"}
+     * @apiErrorExample {json} 失败返回样例
+     *                {"code":"0","msg":"修改成功"}
+     */
     @RequestMapping(value = "/testValue", method = RequestMethod.GET)
     public String getTestValue(){
         return testValue;
@@ -53,11 +71,19 @@ public class BuidingsController implements IBuildingsAPI {
     }
 
     /**
-     * 根据楼盘pid获取楼盘名称(只支持梯内屏)
-     * json数组
-     *
-     * @param pids
-     * @return
+     * @api {POST}/getByIds 根据楼盘pid获取楼盘名称
+     * @apiGroup test
+     * @apiName getByIds
+     * @apiVersion 0.0.1
+     * @apiDescription 只支持梯内屏
+     * @apiParam pids 楼盘id集合
+     * @apiParamExample 请求示例
+     * {"pids":[111,112,113,114,115]}
+     * @apiSuccess code 响应状态码
+     * @apiSuccess msg 响应信息
+     * @apiSuccess data 返回数据
+     * @apiSuccessExample 响应结果示例
+     * {"code":"200", "msg":"success", "data":""}
      */
     @Override
     @PostMapping("/getByIds")
