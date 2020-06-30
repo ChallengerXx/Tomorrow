@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AppStringUtil {
+public class StringUtil {
 
     public static List<String> strToList(String str,String regex){
         if (str != null){

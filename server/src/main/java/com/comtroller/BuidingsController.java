@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.appInterface.IBuildingsAPI;
 import com.business.service.PremisesService;
 import com.exception.BusinessException;
-import com.util.AppStringUtil;
+import com.util.StringUtil;
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
 import com.vo.SellAppPremisesVo;
@@ -107,7 +107,7 @@ public class BuidingsController implements IBuildingsAPI {
     public List<PremisesGPSVo> getByNameLike(@RequestBody String body) {
         JSONObject json = JSONObject.parseObject(body);
         String searchWord = json.getString("searchWord");
-        List<String> cityCodes = AppStringUtil.strToList(json.getString("city"), ",");
+        List<String> cityCodes = StringUtil.strToList(json.getString("city"), ",");
         List<PremisesGPSVo> voList = premisesService.getPremisesNameLike(searchWord, cityCodes);
         return voList;
     }
@@ -124,7 +124,7 @@ public class BuidingsController implements IBuildingsAPI {
     public List<SellAppPremisesVo> getListByIdsV2(String pids) {
         if (pids != null && StringUtils.isEmpty(pids.trim()))
             throw new BusinessException("楼兰id不能为空");
-        List<String> pidList = AppStringUtil.strToList(pids, ",");
+        List<String> pidList = StringUtil.strToList(pids, ",");
         List<SellAppPremisesVo> voList = premisesService.getAppPremisesByIds(pidList);
         return voList;
     }

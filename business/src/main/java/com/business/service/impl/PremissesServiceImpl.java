@@ -8,7 +8,6 @@ import com.business.dao.mapper.projectMapper.SspMachineNumMapper;
 import com.business.service.PremisesService;
 import com.contant.DictionaryEnum;
 import com.req.TableReq;
-import com.util.AppStringUtil;
 import com.vo.PremisesGPSVo;
 import com.vo.PremisesVo;
 import com.vo.SellAppPremisesVo;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
