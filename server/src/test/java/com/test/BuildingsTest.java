@@ -1,6 +1,7 @@
 package com.test;
 
 
+import com.business.dispatcher.RuleDispatcherService;
 import com.business.service.DeviceService;
 import com.business.service.PremisesService;
 import com.vo.PremisesVo;
@@ -22,6 +23,13 @@ public class BuildingsTest {
     private PremisesService premisesService;
     @Autowired
     private DeviceService deviceService;
+    @Autowired
+    private RuleDispatcherService ruleDispatcherService;
+
+    @Test
+    public void testRuleDispatcher() {
+        ruleDispatcherService.dispatcher("2");
+    }
 
     @Test
     public void deviceExport(){

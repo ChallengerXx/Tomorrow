@@ -76,7 +76,7 @@ public class BuidingsController implements IBuildingsAPI {
      * @apiName getByIds
      * @apiVersion 0.0.1
      * @apiDescription 只支持梯内屏
-     * @apiParam pids 楼盘id集合
+     * @apiParam {Array.Number}pids 楼盘id集合
      * @apiParamExample 请求示例
      * {"pids":[111,112,113,114,115]}
      * @apiSuccess code 响应状态码
