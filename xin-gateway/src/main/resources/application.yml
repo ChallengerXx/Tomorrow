@@ -1,0 +1,26 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8880/eureka/
+    registry-fetch-interval-seconds: 30
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 30
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+spring:
+  application:
+    name: xin-gateway
+server:
+  port: 10003
+logging:
+  config: classpath:logback-spring.xml
+
+dubbo:
+  application:
+    name: dubbo_consumer
+  registry:
+    protocol: zookeeper
+    address: zookeeper://127.0.0.1:2181

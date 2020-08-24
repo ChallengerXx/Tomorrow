@@ -1,11 +1,20 @@
 package com.util;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 时间工具类
  */
-public class CalenderUtil {
+public class DateUtil {
+
+    private static final String DEFAULT_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss SSS";
+
+    public static final DateTimeFormatter DEFAULT_DATE_FORMAT = DateTimeFormatter.ofPattern(DEFAULT_FORMAT_PATTERN);
 
     /**
      * 根据数据日期获取开始时间
@@ -65,6 +74,33 @@ public class CalenderUtil {
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
         return calendar.getTimeInMillis() / 1000;
+    }
+
+    /**
+     * date to String
+     * @param date
+     * @return
+     */
+    public static String dateConvertToString(Date date) {
+        return dateConvertToString(date, null);
+    }
+
+    /**
+     * date to String
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String dateConvertToString(Date date, String pattern) {
+        if (date == null) {
+            return "";
+        }
+        if (StringUtils.isBlank(pattern)) {
+            pattern = DEFAULT_FORMAT_PATTERN;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        String dateString = sdf.format(date);
+        return dateString;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package com;
 
+import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.business.dao.mapper.*")
 @EnableApolloConfig
+@EnableDubbo
 public class ServerApplication {
 
     public static void main(String[] args) {

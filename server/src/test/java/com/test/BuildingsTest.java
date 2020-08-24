@@ -28,7 +28,7 @@ public class BuildingsTest {
 
     @Test
     public void testRuleDispatcher() {
-        ruleDispatcherService.dispatcher("2");
+        ruleDispatcherService.dispatcher("1");
     }
 
     @Test

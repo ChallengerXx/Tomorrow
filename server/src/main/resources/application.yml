@@ -56,3 +56,15 @@ app:
 apollo:
   meta: http://localhost:8080
   cluster: Cluster_one
+
+dubbo:
+  application:
+    name: dubbo_provider
+  registry:
+    protocol: zookeeper
+    address: zookeeper://127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.dubbo.service
