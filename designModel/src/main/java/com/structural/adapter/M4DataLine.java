@@ -5,7 +5,7 @@ package com.structural.adapter;
  */
 public class M4DataLine {
 
-    public void connection(){
+    public void connectionM4(){
         System.out.println("使用小米4数据线连接。。。。");
     }
 
