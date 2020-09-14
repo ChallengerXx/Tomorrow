@@ -44,6 +44,15 @@ public class AppResponseBodyAdvice implements ResponseBodyAdvice {
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class aClass,
                                   ServerHttpRequest req, ServerHttpResponse resp) {
+        for (String s : req.getHeaders().get("Content-type")) {
+            boolean isNoJson = true;
+            if (s.contains( "application/json")) {
+                isNoJson = false;
+            }
+            if (isNoJson){ //非json数据不进行包装
+                return obj;
+            }
+        }
         resp.getHeaders().add("Content-type", "application/json");
         if (obj != null && obj.getClass().isAssignableFrom(BaseResp.class)) {
             return obj;
