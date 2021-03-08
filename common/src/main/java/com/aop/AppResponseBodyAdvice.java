@@ -39,7 +39,7 @@ public class AppResponseBodyAdvice implements ResponseBodyAdvice {
      * @param aClass
      * @param req
      * @param resp
-     * @return
+     * @returnannotationTest
      */
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class aClass,
@@ -53,7 +53,7 @@ public class AppResponseBodyAdvice implements ResponseBodyAdvice {
                 return obj;
             }
         }
-        resp.getHeaders().add("Content-type", "application/json");
+        resp.getHeaders().add("Content-type", "application/json;charset=UTF-8");
         if (obj != null && obj.getClass().isAssignableFrom(BaseResp.class)) {
             return obj;
         }
